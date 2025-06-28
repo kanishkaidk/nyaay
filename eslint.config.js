@@ -26,3 +26,6 @@ export default tseslint.config(
     },
   }
 );
+
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+console.log('API Key:', apiKey);
