@@ -6,18 +6,24 @@ import AIResponse from './pages/AIResponse';
 import GenerateDraft from './pages/GenerateDraft';
 import ConnectHelp from './pages/ConnectHelp';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  // add other user fields here
+}
+
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Check if user is logged in (localStorage)
     const savedUser = localStorage.getItem('nyaayai_user');
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      setUser(JSON.parse(savedUser) as User);
     }
   }, []);
 
-  const handleLogin = (userData) => {
+  const handleLogin = (userData: User) => {
     setUser(userData);
     localStorage.setItem('nyaayai_user', JSON.stringify(userData));
   };
